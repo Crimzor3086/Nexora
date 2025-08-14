@@ -1,0 +1,11 @@
+.gold-gradient {
+  background: linear-gradient(90deg, #FFD700 0%, #FFCC33 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.transition-gold {
+  transition: box-shadow 0.2s, color 0.2s, background 0.2s;
+}
