@@ -5,6 +5,7 @@ import { useAuth } from '../utils/auth';
 import Input from './Input';
 import Tooltip from './Tooltip';
 import Notifications from './Notifications';
+import ProfileMenu from './ProfileMenu';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -15,7 +16,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const navigate = useNavigate();
 
   const onLogout = () => {
@@ -51,7 +52,10 @@ const Navbar = () => {
       <div className="flex items-center gap-3">
         <Notifications />
         {isAuthenticated ? (
-          <button onClick={onLogout} className="text-accent-gold font-medium border border-accent-gold px-3 py-1 rounded transition-gold hover:bg-accent-hover/10">Logout</button>
+          <>
+            <ProfileMenu name={user?.name} />
+            <button onClick={onLogout} className="text-accent-gold font-medium border border-accent-gold px-3 py-1 rounded transition-gold hover:bg-accent-hover/10">Logout</button>
+          </>
         ) : (
           <Link to="/login" className="text-accent-gold font-medium border border-accent-gold px-3 py-1 rounded transition-gold hover:bg-accent-hover/10">Login</Link>
         )}
