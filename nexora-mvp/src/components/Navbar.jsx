@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../App';
 
 const navLinks = [
@@ -22,13 +23,13 @@ const Navbar = () => {
       </div>
       <div className="flex items-center gap-6">
         {navLinks.map((link) => (
-          <a
+          <Link
             key={link.name}
-            href={link.href}
+            to={link.href}
             className="text-text-secondary-dark dark:text-text-secondary-dark light:text-text-secondary-light hover:text-accent-gold transition-gold font-medium"
           >
             {link.name}
-          </a>
+          </Link>
         ))}
         <button
           onClick={toggleTheme}

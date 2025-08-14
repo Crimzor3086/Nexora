@@ -1,7 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import Verification from './pages/Verification';
+import ApiDocs from './pages/ApiDocs';
 
 const ThemeContext = createContext();
 
@@ -40,8 +45,12 @@ const App = () => {
         <div className="pt-16 min-h-screen bg-background-dark text-text-primary-dark dark:bg-background-dark dark:text-text-primary-dark light:bg-background-light light:text-text-primary-light transition-colors duration-300">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* TODO: Add other routes */}
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/verification" element={<Verification />} />
+            <Route path="/apidocs" element={<ApiDocs />} />
           </Routes>
+          <Footer />
         </div>
       </BrowserRouter>
     </ThemeProvider>
