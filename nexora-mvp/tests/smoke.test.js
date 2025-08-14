@@ -1,0 +1,1 @@
+import { describe, it, expect } from 'vitest';\n\ndescribe('smoke', () => {\n\tit('works', () => {\n\t\texpect(true).toBe(true);\n\t});\n});\n
