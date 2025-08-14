@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../App';
+import { useAuth } from '../utils/auth';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -11,6 +12,14 @@ const navLinks = [
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 dark:bg-black/70 light:bg-white/80 backdrop-blur border-b border-accent-gold flex items-center justify-between px-6 h-16 shadow-gold">
       <div className="flex items-center gap-3">
@@ -31,9 +40,14 @@ const Navbar = () => {
             {link.name}
           </Link>
         ))}
+        {isAuthenticated ? (
+          <button onClick={onLogout} className="text-accent-gold font-medium border border-accent-gold px-3 py-1 rounded transition-gold hover:bg-accent-hover/10">Logout</button>
+        ) : (
+          <Link to="/login" className="text-accent-gold font-medium border border-accent-gold px-3 py-1 rounded transition-gold hover:bg-accent-hover/10">Login</Link>
+        )}
         <button
           onClick={toggleTheme}
-          className="ml-4 p-2 rounded-full border border-accent-gold hover:bg-accent-hover transition-gold"
+          className="ml-2 p-2 rounded-full border border-accent-gold hover:bg-accent-hover transition-gold"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (

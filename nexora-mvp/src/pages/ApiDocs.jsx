@@ -9,9 +9,9 @@ const ApiDocs = () => {
       </Card>
       <Card title="Authentication">
         <pre className="bg-black/60 text-white p-4 rounded-lg overflow-auto text-sm">
-curl -X POST https://api.nexora.dev/auth/token \
-  -H 'Content-Type: application/json' \
-  -d '{"clientId": "...", "clientSecret": "..."}'
+          <code>{`curl -X POST https://api.nexora.dev/auth/token \\
+  -H 'Content-Type: application/json' \\
+  -d '{"clientId": "...", "clientSecret": "..."}'`}</code>
         </pre>
       </Card>
     </div>
