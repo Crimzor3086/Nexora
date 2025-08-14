@@ -2,15 +2,23 @@ import React, { useState } from 'react';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
+import { useToast } from '../components/ToastProvider';
 
 const Verification = () => {
   const [open, setOpen] = useState(false);
+  const toast = useToast();
+
+  const start = () => {
+    setOpen(true);
+    toast.info('Starting verification...');
+  };
+
   return (
     <div className="max-w-5xl mx-auto p-6 space-y-6">
       <Card title="Verification">
         <p className="text-text-secondary-dark">Complete your identity verification to unlock all features.</p>
         <div className="mt-4">
-          <Button onClick={() => setOpen(true)}>Start Verification</Button>
+          <Button onClick={start}>Start Verification</Button>
         </div>
       </Card>
 

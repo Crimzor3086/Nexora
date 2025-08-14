@@ -2,6 +2,9 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../App';
 import { useAuth } from '../utils/auth';
+import Input from './Input';
+import Tooltip from './Tooltip';
+import Notifications from './Notifications';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -21,25 +24,32 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 dark:bg-black/70 light:bg-white/80 backdrop-blur border-b border-accent-gold flex items-center justify-between px-6 h-16 shadow-gold">
-      <div className="flex items-center gap-3">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 dark:bg-black/70 light:bg-white/80 backdrop-blur border-b border-accent-gold flex items-center justify-between gap-4 px-6 h-16 shadow-gold">
+      <div className="flex items-center gap-3 min-w-[160px]">
         <img
           src={theme === 'dark' ? '/icons/logo-dark.svg' : '/icons/logo-light.svg'}
           alt="Nexora Logo"
           className="h-8 w-auto"
         />
-        <span className="font-bold text-lg gold-gradient">Nexora</span>
+        <span className="font-bold text-lg gold-gradient hidden sm:block">Nexora</span>
       </div>
-      <div className="flex items-center gap-6">
+      <div className="hidden md:flex items-center gap-6">
         {navLinks.map((link) => (
-          <Link
-            key={link.name}
-            to={link.href}
-            className="text-text-secondary-dark dark:text-text-secondary-dark light:text-text-secondary-light hover:text-accent-gold transition-gold font-medium"
-          >
-            {link.name}
-          </Link>
+          <Tooltip key={link.name} content={link.name}>
+            <Link
+              to={link.href}
+              className="text-text-secondary-dark dark:text-text-secondary-dark light:text-text-secondary-light hover:text-accent-gold transition-gold font-medium"
+            >
+              {link.name}
+            </Link>
+          </Tooltip>
         ))}
+      </div>
+      <div className="flex items-center gap-3 flex-1 max-w-lg">
+        <Input placeholder="Search..." />
+      </div>
+      <div className="flex items-center gap-3">
+        <Notifications />
         {isAuthenticated ? (
           <button onClick={onLogout} className="text-accent-gold font-medium border border-accent-gold px-3 py-1 rounded transition-gold hover:bg-accent-hover/10">Logout</button>
         ) : (
@@ -47,7 +57,7 @@ const Navbar = () => {
         )}
         <button
           onClick={toggleTheme}
-          className="ml-2 p-2 rounded-full border border-accent-gold hover:bg-accent-hover transition-gold"
+          className="ml-1 p-2 rounded-full border border-accent-gold hover:bg-accent-hover transition-gold"
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (

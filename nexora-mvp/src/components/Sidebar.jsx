@@ -3,9 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 const menuItems = [
   { name: 'Dashboard', href: '/dashboard', icon: 'settings-icon' },
-  { name: 'Profile', href: '/profile', icon: 'user-icon' },
-  { name: 'Verification', href: '/verification', icon: 'verify-icon' },
-  { name: 'API Docs', href: '/apidocs', icon: 'api-icon' },
+  { name: 'Identity', href: '/identity', icon: 'verify-icon' },
+  { name: 'Multi-Chain', href: '/multichain', icon: 'api-icon' },
+  { name: 'Settings', href: '/settings', icon: 'settings-icon' },
 ];
 
 const Sidebar = () => {
@@ -31,7 +31,7 @@ const Sidebar = () => {
             <Link
               key={item.name}
               to={item.href}
-              className={`flex items-center gap-3 px-3 py-2 hover:bg-accent-hover/20 transition-gold ${active ? 'text-accent-gold' : 'text-text-secondary-dark dark:text-text-secondary-dark light:text-text-secondary-light'}`}
+              className={`flex items-center gap-3 px-3 py-2 hover:bg-accent-hover/20 transition-gold ${active ? 'text-accent-gold border-l-2 border-accent-gold' : 'text-text-secondary-dark dark:text-text-secondary-dark light:text-text-secondary-light'}`}
             >
               <img src={`/icons/${item.icon}.svg`} alt="" className="h-5 w-5" />
               <span className={`${collapsed ? 'hidden' : 'inline'} text-sm font-medium`}>{item.name}</span>

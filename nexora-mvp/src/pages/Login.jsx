@@ -3,10 +3,12 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../utils/auth';
 import Card from '../components/Card';
 import Button from '../components/Button';
+import { useToast } from '../components/ToastProvider';
 
 const Login = () => {
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
+  const toast = useToast();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -20,9 +22,12 @@ const Login = () => {
     setLoading(true);
     try {
       await login({ email, password });
+      toast.success('Logged in successfully');
       navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'Login failed');
+      const msg = err.message || 'Login failed';
+      setError(msg);
+      toast.error(msg);
     } finally {
       setLoading(false);
     }
@@ -32,7 +37,7 @@ const Login = () => {
     <div className="max-w-md mx-auto p-6">
       <Card title="Sign in to Nexora">
         <form onSubmit={onSubmit} className="space-y-4">
-          {error && <div className="text-error-dark">{error}</div>}
+          {error && <div className="text-error">{error}</div>}
           <div>
             <label className="block text-sm mb-1">Email</label>
             <input

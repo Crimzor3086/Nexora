@@ -3,8 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
+import ToastProvider from './components/ToastProvider';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
+import Identity from './pages/Identity';
+import MultiChain from './pages/MultiChain';
+import Settings from './pages/Settings';
 import Profile from './pages/Profile';
 import Verification from './pages/Verification';
 import ApiDocs from './pages/ApiDocs';
@@ -45,42 +49,68 @@ const App = () => {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <BrowserRouter>
-          <Navbar />
-          <div className="pt-16 min-h-screen bg-background-dark text-text-primary-dark dark:bg-background-dark dark:text-text-primary-dark light:bg-background-light light:text-text-primary-light transition-colors duration-300">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <Dashboard />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/verification"
-                element={
-                  <ProtectedRoute>
-                    <Verification />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="/apidocs" element={<ApiDocs />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-            <Footer />
-          </div>
-        </BrowserRouter>
+        <ToastProvider>
+          <BrowserRouter>
+            <Navbar />
+            <div className="pt-16 min-h-screen bg-background-dark text-text-primary-dark dark:bg-background-dark dark:text-text-primary-dark light:bg-background-light light:text-text-primary-light transition-colors duration-300">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/identity"
+                  element={
+                    <ProtectedRoute>
+                      <Identity />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/multichain"
+                  element={
+                    <ProtectedRoute>
+                      <MultiChain />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <ProtectedRoute>
+                      <Settings />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <ProtectedRoute>
+                      <Profile />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/verification"
+                  element={
+                    <ProtectedRoute>
+                      <Verification />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="/apidocs" element={<ApiDocs />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Footer />
+            </div>
+          </BrowserRouter>
+        </ToastProvider>
       </AuthProvider>
     </ThemeProvider>
   );

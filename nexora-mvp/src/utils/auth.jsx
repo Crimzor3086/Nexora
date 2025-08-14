@@ -67,12 +67,17 @@ export const AuthProvider = ({ children }) => {
 		setUser(null);
 	};
 
+	const updateUser = (partial) => {
+		setUser((prev) => ({ ...(prev || {}), ...partial }));
+	};
+
 	const value = {
 		token,
 		user,
 		isAuthenticated: Boolean(token),
 		login,
 		logout,
+		updateUser,
 	};
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
