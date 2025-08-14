@@ -9,3 +9,22 @@
 .transition-gold {
   transition: box-shadow 0.2s, color 0.2s, background 0.2s;
 }
+
+@keyframes gradient-move {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background: linear-gradient(90deg, #FFD700, #FFCC33, #FFD700);
+  background-size: 200% 200%;
+  animation: gradient-move 3s ease-in-out infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
