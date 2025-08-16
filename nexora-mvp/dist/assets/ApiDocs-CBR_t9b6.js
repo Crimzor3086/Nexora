@@ -1,0 +1,3 @@
+import{j as e}from"./index-DL7vBajd.js";import{C as t}from"./Card-bgSSzYas.js";const r=()=>e.jsxs("div",{className:"max-w-5xl mx-auto p-6 space-y-6",children:[e.jsx(t,{title:"API Overview",children:e.jsx("p",{className:"text-text-secondary-dark",children:"Use the Nexora API to integrate identity and verification into your app."})}),e.jsx(t,{title:"Authentication",children:e.jsx("pre",{className:"bg-black/60 text-white p-4 rounded-lg overflow-auto text-sm",children:e.jsx("code",{children:`curl -X POST https://api.nexora.dev/auth/token \\
+  -H 'Content-Type: application/json' \\
+  -d '{"clientId": "...", "clientSecret": "..."}'`})})})]});export{r as default};
